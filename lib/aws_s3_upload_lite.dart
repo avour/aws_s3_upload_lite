@@ -120,7 +120,7 @@ class AwsS3 {
       req.fields['X-Amz-Signature'] = signature;
       req.fields['Content-Type'] = contentType;
 
-      if(sessionToken != null){
+      if (sessionToken != null) {
         req.fields['X-Amz-Security-Token'] = sessionToken;
       }
 
@@ -141,7 +141,8 @@ class AwsS3 {
       } catch (e) {
         return e.toString();
       }
-    } catch (e) {
+    } catch (e, stack) {
+      print("$e, $stack");
       return e.toString();
     }
   }
@@ -265,7 +266,7 @@ class AwsS3 {
       req.fields['Policy'] = policy.encode();
       req.fields['X-Amz-Signature'] = signature;
       req.fields['Content-Type'] = contentType;
-      if(sessionToken != null){
+      if (sessionToken != null) {
         req.fields['X-Amz-Security-Token'] = sessionToken;
       }
       // If metadata isn't null, add metadata params to the request.
@@ -399,7 +400,7 @@ class AwsS3 {
       req.fields['X-Amz-Signature'] = signature;
       req.fields['Content-Type'] = contentType;
 
-      if(sessionToken != null){
+      if (sessionToken != null) {
         req.fields['X-Amz-Security-Token'] = sessionToken;
       }
 
@@ -412,7 +413,7 @@ class AwsS3 {
       if (headers != null) {
         req.headers.addAll(headers);
       }
-      
+
       try {
         final res = await req.send();
 
